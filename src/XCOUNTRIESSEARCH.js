@@ -63,6 +63,19 @@ style={{
   const CountryCard = ({name,flag,abbr}) => {
 
     return <div 
+    // style={{
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     height: "200px",
+    //     width: "200px",
+    //     justifyContent: "center",
+    //     alignItems: "center",
+    //     border:"1px solid #000",
+    //     borderRadius:"5px",
+    //     padding: "10px",
+    //     margin:"10px",
+        
+    //     }} 
         className="countryCard"
         >
           <img src={flag} alt={`Flag of ${abbr}`} style={{ height: "100px", width: "100px",}}/>
