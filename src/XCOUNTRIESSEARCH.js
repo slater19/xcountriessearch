@@ -4,7 +4,7 @@
 
   function CountriesSearch() {
 
-    const api="https://xcountries-backend.azurewebsites.net/all"
+    const api="https://restcountries.com/v3.1/all"
     const [countries,setCountries]=useState([])
     const [searchItem ,setSearchitem]=useState('')
     const [filteredCountries,setFilteredcountries]=useState([])
@@ -18,7 +18,7 @@
         setFilteredcountries(data)
         // TODO: CRIO_TASK_MODULE_CART - Pass Bearer token inside "Authorization" header to get data from "GET /cart" API and return the response data
       } catch (error) {
-          console.error("Error fetching data:",error);
+          console.error("Error fetching data: ",error);
       }
   
     };
@@ -53,8 +53,8 @@ style={{
     display: "flex",
     flexWrap:"wrap",
   }} >
-    {filteredCountries.map(({name,flag,abbr}) =>(
-      <CountryCard name={name} flag={flag} abbr={abbr} />
+    {countries.map(({name,flags,cca2}) =>(
+      <CountryCard name={name.common} flag={flags.png} abbr={cca2} />
     ))}
   </div>
   
