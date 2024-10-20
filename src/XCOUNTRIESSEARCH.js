@@ -16,6 +16,7 @@
         const data=await res.json(); 
         setCountries(data) 
         setFilteredcountries(data)
+        console.log(data);
         // TODO: CRIO_TASK_MODULE_CART - Pass Bearer token inside "Authorization" header to get data from "GET /cart" API and return the response data
       } catch (error) {
           console.error("Error fetching data: ",error);
@@ -30,7 +31,7 @@
       setSearchitem(searchText);
 
       const filteredItems=countries.filter((country)=>
-        country.name.toLowerCase().includes(searchText.toLowerCase())
+        country.name.common.toLowerCase().includes(searchText.toLowerCase())
 
       
     );
@@ -53,7 +54,7 @@ style={{
     display: "flex",
     flexWrap:"wrap",
   }} >
-    {countries.map(({name,flags,cca2}) =>(
+    {filteredCountries.map(({name,flags,cca2}) =>(
       <CountryCard name={name.common} flag={flags.png} abbr={cca2} />
     ))}
   </div>
