@@ -1,10 +1,11 @@
 
   import React, { useEffect, useState } from "react";
   import './XCOUNTRIESSEARCH.css';
+  import axios from 'axios';
 
   function CountriesSearch() {
-
-    const api="https://restcountries.com/v3.1/all"
+    // const api="https://restcountries.com/v3.1/all"
+    const api="https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
     const [countries,setCountries]=useState([])
     const [searchItem ,setSearchitem]=useState('')
     const [filteredCountries,setFilteredcountries]=useState([])
@@ -31,7 +32,7 @@
       setSearchitem(searchText);
 
       const filteredItems=countries.filter((country)=>
-        country.name.common.toLowerCase().includes(searchText.toLowerCase())
+        country.common.toLowerCase().includes(searchText.toLowerCase())
 
       
     );
@@ -54,16 +55,39 @@ style={{
     display: "flex",
     flexWrap:"wrap",
   }} >
-    {filteredCountries.map(({name,flags,cca2}) =>(
-      <CountryCard name={name.common} flag={flags.png} abbr={cca2} />
+    {filteredCountries.map(({common,png}) =>(
+      <CountryCard name={common} flag={png}/>
+      // <CountryCard name={name.common} flag={flags.png} abbr={cca2} />
     ))}
   </div>
   
   </>)}
-  
-  const CountryCard = ({name,flag,abbr}) => {
 
-    return <div 
+const CountryCard = ({name,flag}) => {
+
+  return <div 
+  // style={{
+  //     display: "flex",
+  //     flexDirection: "column",
+  //     height: "200px",
+  //     width: "200px",
+  //     justifyContent: "center",
+  //     alignItems: "center",
+  //     border:"1px solid #000",
+  //     borderRadius:"5px",
+  //     padding: "10px",
+  //     margin:"10px",
+      
+  //     }} 
+      className="countryCard"
+      >
+        <img src={flag} alt={`Flag of ${name}`} style={{ height: "100px", width: "100px",}}/>
+       <h2>{name}</h2>
+        </div>;
+  
+  // const CountryCard = ({name,flag,abbr}) => {
+
+    // return <div 
     // style={{
     //     display: "flex",
     //     flexDirection: "column",
@@ -77,11 +101,11 @@ style={{
     //     margin:"10px",
         
     //     }} 
-        className="countryCard"
-        >
-          <img src={flag} alt={`Flag of ${abbr}`} style={{ height: "100px", width: "100px",}}/>
-         <h2>{name}</h2>
-          </div>;
+        // className="countryCard"
+        // >
+          // <img src={flag} alt={`Flag of ${abbr}`} style={{ height: "100px", width: "100px",}}/>
+        //  <h2>{name}</h2>
+          // </div>;
       
       
       
